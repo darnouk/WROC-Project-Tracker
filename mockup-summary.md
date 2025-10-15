@@ -1,7 +1,7 @@
 # WROC Project Tracker - Mockup Summary
 
 ## Project Overview
-The WROC Project Tracker is a fully functional web-based prototype that visualizes 30+ years of Wisconsin aerial mapping projects through an interactive map interface. This tool serves the Wisconsin Regional Orthoimagery Consortium (WROC) by providing spatial project management capabilities for orthoimagery and LiDAR collections across all 72 Wisconsin counties.
+The WROC Project Tracker is a fully functional web-based prototype that visualizes 15 years of Wisconsin aerial mapping projects through an interactive map interface. This tool serves the Wisconsin Regional Orthoimagery Consortium (WROC) and Ayres Associates by providing spatial project management capabilities for orthoimagery and LiDAR collections across all 72 Wisconsin counties.
 
 ## How to Interact with the Prototype
 **Access**: Live prototype available at: https://darnouk.github.io/WROC-Project-Tracker/  

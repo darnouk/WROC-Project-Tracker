@@ -51,7 +51,7 @@ const SAMPLE_DATA = {
         {
             id: 1,
             project_name: "Madison Metro Orthophotography 2023",
-            project_type: "orthophotography",
+            project_type: "Ortho",
             client: "WROC",
             start_date: "2023-04-15",
             end_date: "2023-08-30",
@@ -59,6 +59,7 @@ const SAMPLE_DATA = {
             county: "Dane County",
             municipality: "Madison",
             budget: 125000,
+            resolution: 6,
             internal_path: "R:/WROC/2023/Dane/Madison_Ortho",
             description: "High-resolution orthophotography for Madison metropolitan area covering 150 square miles at 6-inch pixel resolution.",
             is_public: true,
@@ -77,7 +78,7 @@ const SAMPLE_DATA = {
         {
             id: 2,
             project_name: "Milwaukee Harbor LiDAR Survey",
-            project_type: "lidar",
+            project_type: "LiDAR",
             client: "SEWRPC",
             start_date: "2023-06-01",
             end_date: "2023-09-15",
@@ -85,6 +86,7 @@ const SAMPLE_DATA = {
             county: "Milwaukee County",
             municipality: "Milwaukee",
             budget: 275000,
+            resolution: 3,
             internal_path: "R:/SEWRPC/2023/Milwaukee/Harbor_LiDAR",
             description: "Bathymetric and topographic LiDAR survey of Milwaukee Harbor and surrounding areas for flood modeling.",
             is_public: false,
@@ -103,7 +105,7 @@ const SAMPLE_DATA = {
         {
             id: 3,
             project_name: "I-94 Corridor Mapping",
-            project_type: "photogrammetry",
+            project_type: "Ortho",
             client: "WISDOT",
             start_date: "2022-05-10",
             end_date: "2022-11-20",
@@ -111,6 +113,7 @@ const SAMPLE_DATA = {
             county: "Waukesha County",
             municipality: "Various",
             budget: 180000,
+            resolution: 12,
             internal_path: "R:/WISDOT/2022/I94_Corridor",
             description: "Photogrammetric mapping of I-94 corridor for highway expansion planning and design.",
             is_public: true,
@@ -129,7 +132,7 @@ const SAMPLE_DATA = {
         {
             id: 4,
             project_name: "Twin Cities Metro Aerial Survey",
-            project_type: "aerial-survey",
+            project_type: "Ortho",
             client: "MNDOT",
             start_date: "2023-03-20",
             end_date: "2023-07-30",
@@ -137,6 +140,7 @@ const SAMPLE_DATA = {
             county: "Hennepin County",
             municipality: "Minneapolis",
             budget: 320000,
+            resolution: 18,
             internal_path: "R:/MNDOT/2023/Twin_Cities",
             description: "Comprehensive aerial survey of Twin Cities metropolitan area for transportation planning.",
             is_public: false,
@@ -155,7 +159,7 @@ const SAMPLE_DATA = {
         {
             id: 5,
             project_name: "Lake Winnebago Shoreline Mapping",
-            project_type: "mapping",
+            project_type: "LiDAR",
             client: "County",
             start_date: "2023-08-01",
             end_date: "2023-10-15",
@@ -163,6 +167,7 @@ const SAMPLE_DATA = {
             county: "Winnebago County",
             municipality: "Oshkosh",
             budget: 85000,
+            resolution: 3,
             internal_path: "R:/Counties/2023/Winnebago/Shoreline",
             description: "Detailed shoreline mapping for erosion control and environmental monitoring.",
             is_public: true,
@@ -237,6 +242,15 @@ const DataUtils = {
                     project.municipality.includes(loc)
                 );
                 if (!hasMatch) return false;
+            }
+            
+            // Resolution filter
+            if (filters.resolution.length > 0) {
+                // Check if project has a resolution that matches any selected resolution
+                const projectResolution = project.resolution ? project.resolution.toString() : null;
+                if (!projectResolution || !filters.resolution.includes(projectResolution)) {
+                    return false;
+                }
             }
             
             return true;

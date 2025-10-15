@@ -2,63 +2,56 @@
 
 ## User Persona: Sarah Chen, GIS Project Manager
 
-**Background**: Sarah is a 32-year-old GIS Project Manager at the Wisconsin Regional Orthoimagery Consortium (WROC). She has 8 years of experience in geospatial project coordination and manages multiple aerial mapping initiatives across Wisconsin counties simultaneously.
+**Background**: Zach is a middle-aged senior manager of the aerial mapping group at Ayres Associates. He has decades of experience in geospatial project coordination and manages multiple aerial mapping initiatives across Wisconsin counties simultaneously.
 
 **Role & Responsibilities**: 
-- Oversees 15-20 active orthoimagery and LiDAR projects annually
-- Coordinates with county governments, contractors, and state agencies
-- Tracks project timelines, budgets, and deliverable specifications
-- Reports progress to WROC steering committee and stakeholders
+- Oversees dozens of active orthoimagery and LiDAR projects annually.
+- Supervises an aerial mapping team of 30 total project managers, supervisors, and technicians.
+- Coordinates with county governments, contractors, and state agencies on project scope, budgeting, and contracting.
+- Tracks project timelines, budgets, and deliverable specifications.
+- Reports progress to WROC leadership committee and stakeholders.
 
 **Pain Points**:
-- Currently uses spreadsheets and static maps to track 30+ years of historical projects
-- Difficult to quickly visualize project coverage gaps across Wisconsin
-- Time-intensive to answer stakeholder questions about project history
-- Challenging to identify counties ready for new orthoimagery cycles
+- Currently uses spreadsheets and static maps to track 30+ years of historical projects.
+- Difficult to quickly visualize project coverage gaps across Wisconsin.
+- Time-intensive to answer stakeholder questions about project history.
+- Challenging to identify counties ready for new orthoimagery cycles. Mostly reliant on dated static maps and memory.
 
-**Technical Comfort**: Intermediate GIS user, comfortable with web applications, prefers intuitive interfaces over complex software.
+**Technical Comfort**: Intermediate GIS user, comfortable with web applications, prefers intuitive and aesthetic interfaces over complex software.
 
 ---
 
 ## Scenario of Envisioned Use
 
 ### Morning Planning Session
-It's Tuesday morning, and Sarah receives an email from the WROC steering committee asking: *"Which counties haven't had LiDAR collection in the past 5 years, and what would be the estimated budget for a statewide update?"*
+It's Tuesday morning, and Zach receives an email from the WROC leadership committee asking: *"After hearing about the 2023-2025 cycle's tremendous success in delivering orthoimagery at various high resolutions, Douglas County's LIO has expressed interest in joining our consortium. They would like further insight on Ayres' experience delivering specifically 6" resolution throughout the last 5 years. Can you provide a list of counties this has been done for since 2020?"*
 
-Instead of opening multiple spreadsheets and cross-referencing project databases, Sarah opens the WROC Project Tracker on her laptop.
+Instead of opening multiple spreadsheets and cross-referencing project databases, Zach opens the WROC Project Tracker on his laptop.
 
 ### Step 1: Quick Assessment
-Sarah logs in and immediately sees Wisconsin's county boundaries displayed on an interactive map. She can quickly scan the visual landscape and see the current state of project coverage across the state.
+Zach logs in and immediately sees Wisconsin's county boundaries displayed on an interactive map. He can quickly scan the visual landscape and see the current state of project coverage across the state.
 
 ### Step 2: Targeted Analysis
 She sets the filters to:
-- **Project Type**: LiDAR only
-- **Year Range**: 2019-2024 (last 5 years)
-- **Location**: Statewide
+- **Project Type**: Ortho only
+- **Year Range**: 2020-2025 (last 5 years)
+- **Location**: <no filters set; want all counties>
+- **Resolution**: 6"
 
-After clicking "Apply Filters," the map updates to highlight only counties with recent LiDAR projects while dimming others. Sarah can instantly see visual gaps - counties that appear dimmed are candidates for new LiDAR collection.
+After clicking "Apply Filters," the map updates to highlight only counties with recent Orthoimagery projects while dimming others. Zach can instantly see which counties had 6" Ortho projects in the last 5 years under "Total Projects" and convey that information to WROC/Douglas County.
 
-### Step 3: Detailed Investigation
-Sarah clicks on several dimmed counties (those without recent LiDAR) to view their popup information. Each popup shows:
-- County name
-- Last LiDAR collection year (if any)
-- Resolution specifications from previous collections
 
-### Step 4: Documentation and Planning
-Using the visual map and results panel showing project counts, Sarah quickly identifies 23 counties needing LiDAR updates. She takes a screenshot of the filtered map view and notes the budget totals from the results section.
-
-### Step 5: Stakeholder Communication
-Within 15 minutes, Sarah has compiled a comprehensive response for the steering committee, including a visual map showing gaps, specific county lists, and preliminary budget estimates based on historical project data.
+### Step 3: Stakeholder Communication
+Within 15 minutes, Zach has compiled a comprehensive response for the WROC leadership committee.
 
 ---
 
 ## Meaningful Insight Achievement
 
-Through this scenario, Sarah transforms from reactive data hunting to proactive spatial analysis. The WROC Project Tracker enables her to:
+Through this scenario, Zach transforms from reactive data hunting to proactive spatial analysis. The WROC Project Tracker enables him to:
 
-1. **Visualize Coverage Gaps**: Instantly identify counties needing attention through map-based filtering
-2. **Make Data-Driven Decisions**: Use historical patterns to inform future project planning
-3. **Respond Rapidly**: Answer complex stakeholder questions in minutes instead of hours
+
+1. **Respond Rapidly**: Answer complex stakeholder questions in minutes instead of hours
 4. **Communicate Effectively**: Provide visual evidence to support project recommendations
 5. **Optimize Resource Allocation**: Identify clustering opportunities for cost-effective project bundling
 

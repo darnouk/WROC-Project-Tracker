@@ -5,7 +5,8 @@ class FilterManager {
             projectType: [],
             yearFrom: null,
             yearTo: null,
-            location: []
+            location: [],
+            resolution: []
         };
         
         this.init();
@@ -107,6 +108,11 @@ class FilterManager {
         const locationSelect = document.getElementById('location');
         this.currentFilters.location = Array.from(locationSelect.selectedOptions)
             .map(option => option.value);
+            
+        // Resolution filter
+        const resolutionSelect = document.getElementById('resolution');
+        this.currentFilters.resolution = Array.from(resolutionSelect.selectedOptions)
+            .map(option => option.value);
     }
     
     applyFilters() {
@@ -158,6 +164,7 @@ class FilterManager {
         // Reset form elements
         document.getElementById('projectType').selectedIndex = -1;
         document.getElementById('location').selectedIndex = -1;
+        document.getElementById('resolution').selectedIndex = -1;
         
         const currentYear = new Date().getFullYear();
         document.getElementById('yearFrom').value = 1995;
@@ -168,7 +175,8 @@ class FilterManager {
             projectType: [],
             yearFrom: null,
             yearTo: null,
-            location: []
+            location: [],
+            resolution: []
         };
         
         // Apply cleared filters
