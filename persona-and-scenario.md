@@ -1,6 +1,6 @@
 # WROC Project Tracker - Persona and Scenario
 
-## User Persona: Sarah Chen, GIS Project Manager
+## User Persona: Zach N., Aerial Mapping Group Manager
 
 **Background**: Zach is a middle-aged senior manager of the aerial mapping group at Ayres Associates. He has decades of experience in geospatial project coordination and manages multiple aerial mapping initiatives across Wisconsin counties simultaneously.
 
