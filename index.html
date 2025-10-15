@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WROC Project Tracker</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
+        
+        // Firebase configuration (demo keys - replace with your actual config)
+        const firebaseConfig = {
+            apiKey: "demo-api-key",
+            authDomain: "demo-project.firebaseapp.com",
+            projectId: "demo-project",
+            storageBucket: "demo-project.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "demo-app-id"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        // Make Firebase instances available globally
+        window.firebase = { auth, db };
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="assets/ayres-logo.png" alt="Ayres Associates" class="logo" onerror="this.src='https://via.placeholder.com/120x40/1B4F8E/FFFFFF?text=AYRES'">
+                <h1>WROC Project Tracker</h1>
+            </div>
+            <div class="auth-section" id="authSection">
+                <div id="loginContainer">
+                    <button id="loginBtn" class="btn btn-primary">Login</button>
+                </div>
+                <div id="userContainer" style="display: none;">
+                    <span id="userEmail"></span>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-left">
+                <div class="filters-section">
+                    <h3>Filter Projects</h3>
+                    
+                    <!-- Project Type Filter -->
+                    <div class="filter-group">
+                        <label for="projectType">Project Type:</label>
+                        <p class="filter-helper">Ctrl+Click to select multiple items</p>
+                        <select id="projectType" multiple>
+                            <option value="Ortho">Ortho</option>
+                            <option value="LiDAR">LiDAR</option>
+                        </select>
+                    </div>
+
+                    <!-- Year Range Filter -->
+                    <div class="filter-group">
+                        <label for="yearRange">Year Range:</label>
+                        <div class="year-inputs">
+                            <input type="number" id="yearFrom" placeholder="From" min="2010" max="2025" value="2010">
+                            <input type="number" id="yearTo" placeholder="To" min="2010" max="2025" value="2025">
+                        </div>
+                    </div>
+
+                    <!-- Location Filter -->
+                    <div class="filter-group">
+                        <label for="location">Location:</label>
+                        <p class="filter-helper">Ctrl+Click to select multiple items</p>
+                        <select id="location" multiple>
+                            <option value="Statewide">Statewide</option>
+                            <option value="Adams">Adams County</option>
+                            <option value="Ashland">Ashland County</option>
+                            <option value="Barron">Barron County</option>
+                            <option value="Bayfield">Bayfield County</option>
+                            <option value="Brown">Brown County</option>
+                            <option value="Buffalo">Buffalo County</option>
+                            <option value="Burnett">Burnett County</option>
+                            <option value="Calumet">Calumet County</option>
+                            <option value="Chippewa">Chippewa County</option>
+                            <option value="Clark">Clark County</option>
+                            <option value="Columbia">Columbia County</option>
+                            <option value="Crawford">Crawford County</option>
+                            <option value="Dane">Dane County</option>
+                            <option value="Dodge">Dodge County</option>
+                            <option value="Door">Door County</option>
+                            <option value="Douglas">Douglas County</option>
+                            <option value="Dunn">Dunn County</option>
+                            <option value="Eau Claire">Eau Claire County</option>
+                            <option value="Florence">Florence County</option>
+                            <option value="Fond du Lac">Fond du Lac County</option>
+                            <option value="Forest">Forest County</option>
+                            <option value="Grant">Grant County</option>
+                            <option value="Green">Green County</option>
+                            <option value="Green Lake">Green Lake County</option>
+                            <option value="Iowa">Iowa County</option>
+                            <option value="Iron">Iron County</option>
+                            <option value="Jackson">Jackson County</option>
+                            <option value="Jefferson">Jefferson County</option>
+                            <option value="Juneau">Juneau County</option>
+                            <option value="Kenosha">Kenosha County</option>
+                            <option value="Kewaunee">Kewaunee County</option>
+                            <option value="La Crosse">La Crosse County</option>
+                            <option value="Lafayette">Lafayette County</option>
+                            <option value="Langlade">Langlade County</option>
+                            <option value="Lincoln">Lincoln County</option>
+                            <option value="Manitowoc">Manitowoc County</option>
+                            <option value="Marathon">Marathon County</option>
+                            <option value="Marinette">Marinette County</option>
+                            <option value="Marquette">Marquette County</option>
+                            <option value="Milwaukee">Milwaukee County</option>
+                            <option value="Monroe">Monroe County</option>
+                            <option value="Oconto">Oconto County</option>
+                            <option value="Oneida">Oneida County</option>
+                            <option value="Outagamie">Outagamie County</option>
+                            <option value="Ozaukee">Ozaukee County</option>
+                            <option value="Pepin">Pepin County</option>
+                            <option value="Pierce">Pierce County</option>
+                            <option value="Polk">Polk County</option>
+                            <option value="Portage">Portage County</option>
+                            <option value="Price">Price County</option>
+                            <option value="Racine">Racine County</option>
+                            <option value="Richland">Richland County</option>
+                            <option value="Rock">Rock County</option>
+                            <option value="Rusk">Rusk County</option>
+                            <option value="St. Croix">St. Croix County</option>
+                            <option value="Sauk">Sauk County</option>
+                            <option value="Sawyer">Sawyer County</option>
+                            <option value="Shawano">Shawano County</option>
+                            <option value="Sheboygan">Sheboygan County</option>
+                            <option value="Taylor">Taylor County</option>
+                            <option value="Trempealeau">Trempealeau County</option>
+                            <option value="Vernon">Vernon County</option>
+                            <option value="Vilas">Vilas County</option>
+                            <option value="Walworth">Walworth County</option>
+                            <option value="Washburn">Washburn County</option>
+                            <option value="Washington">Washington County</option>
+                            <option value="Waukesha">Waukesha County</option>
+                            <option value="Waupaca">Waupaca County</option>
+                            <option value="Waushara">Waushara County</option>
+                            <option value="Winnebago">Winnebago County</option>
+                            <option value="Wood">Wood County</option>
+                        </select>
+                    </div>
+
+                    <!-- Filter Buttons -->
+                    <div class="filter-actions">
+                        <button id="applyFilters" class="btn btn-primary">Apply Filters</button>
+                        <button id="clearFilters" class="btn btn-secondary">Clear All</button>
+                    </div>
+                </div>
+
+                <!-- Data Management (Admin Only) -->
+                <div class="admin-section" id="adminSection" style="display: none;">
+                    <h3>Data Management</h3>
+                    <button id="addProjectBtn" class="btn btn-success">Add New Project</button>
+                    <button id="exportDataBtn" class="btn btn-info">Export Data</button>
+                </div>
+            </div>
+
+            <div class="sidebar-right">
+                <!-- Project Summary -->
+                <div class="summary-section">
+                    <h3>Results</h3>
+                    <div class="summary-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalProjects">42</span>
+                            <span class="stat-label">Total Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="filteredProjects">42</span>
+                            <span class="stat-label">Filtered Results</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="yearSpan">30</span>
+                            <span class="stat-label">Years of Data</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Map Container -->
+        <div class="map-container">
+            <div id="map"></div>
+            
+            <!-- Map Controls -->
+            <div class="map-controls">
+                <button id="resetView" class="btn btn-outline">Reset View</button>
+                <button id="toggleLayers" class="btn btn-outline">Toggle Layers</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login to Ayres Associates Portal</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="button" id="demoLogin" class="btn btn-success">Demo Admin Access</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="projectTitle">Project Details</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="projectDetails">
+                <!-- Project details will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

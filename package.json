@@ -1,0 +1,16 @@
+{
+  "name": "aerial-mapping-tracker",
+  "version": "1.0.0",
+  "description": "Interactive web map for tracking aerial mapping projects at Ayres Associates",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000 --host=localhost",
+    "dev": "live-server --port=3000 --host=localhost --watch=."
+  },
+  "keywords": ["leaflet", "firebase", "gis", "mapping", "project-tracking"],
+  "author": "Ayres Associates",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
