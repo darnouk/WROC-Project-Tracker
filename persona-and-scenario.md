@@ -32,7 +32,7 @@ Instead of opening multiple spreadsheets and cross-referencing project databases
 Zach logs in and immediately sees Wisconsin's county boundaries displayed on an interactive map. He can quickly scan the visual landscape and see the current state of project coverage across the state.
 
 ### Step 2: Targeted Analysis
-She sets the filters to:
+He sets the filters to:
 - **Project Type**: Ortho only
 - **Year Range**: 2020-2025 (last 5 years)
 - **Location**: <no filters set; want all counties>
